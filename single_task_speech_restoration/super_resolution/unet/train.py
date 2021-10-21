@@ -62,6 +62,7 @@ if __name__ == "__main__":
     parser.add_argument("--sample_rate", type=int, default=44100)
     parser.add_argument("--early_stop_tolerance", type=int, default=5)
     parser.add_argument("--early_stop_crateria", default="min", help="min or max")
+    parser.add_argument('--hours_for_an_epoch', default=500, type=int)
     # print(generate_doc(parser))
     ROOT = Config.ROOT
 
@@ -129,7 +130,7 @@ if __name__ == "__main__":
         train_data_type=args.train_data_type, val_datasets=args.val_dataset,
         batchsize=args.batchsize, frame_length=args.frame_length, num_workers=22 if (torch.cuda.is_available()) else 0,
         sample_rate=args.sample_rate, aug_conf=Config.aug_conf, aug_sources=Config.aug_sources, aug_effects=Config.aug_effects,
-        hours_for_an_epoch=500
+        hours_for_an_epoch=args.hours_for_an_epoch
     )
 
     callbacks = []

@@ -348,7 +348,7 @@ class ResUNet(pl.LightningModule):
     def preprocess(self, batch, train=False, cutoff=None):
         if(train):
             vocal = batch[self.type_target]
-            noise = torch.zeros_like(batch['noise_LR'])
+            noise = torch.zeros_like(batch['vocals_LR'])
             LR = batch[self.type_target+'_aug_LR']
             vocal, LR, noise = vocal.float().permute(0, 2, 1), LR.float().permute(0, 2, 1), noise.float().permute(0, 2, 1)
             # LR, noise = self.add_random_noise(LR, noise)

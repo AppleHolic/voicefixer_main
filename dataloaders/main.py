@@ -18,6 +18,8 @@ class DATA:
             return DATA.VCTK_TRAIN
         elif("vd_noise" == name):
             return DATA.VD_NOISE
+        elif 'dsd_vocals' == name:
+            return DATA.DSD_ALL
         else:
             raise ValueError("Error: unexpected training dataset "+ name)
 
@@ -26,6 +28,8 @@ class DATA:
         print("Load test dataset " + name)
         if("vctk" == name):
             return DATA.VCTK_TEST
+        elif 'dsd_vocals' == name:
+            return DATA.DSD_ALL
         elif("gsr" == name):
             return DATA.ALL_GSR
         else:
@@ -57,6 +61,7 @@ class DATA:
         "vctk":44100,
         "vd_noise": 44100,
         "gsr": 44100,
+        "dsd_vocals": 44100
     }
 
     VD_NOISE = {
@@ -69,6 +74,12 @@ class DATA:
         "vocals":{
             "vctk": "voicefixer_main/dataIndex/vctk/train/speech.lst",
         },
+    }
+
+    DSD_ALL = {
+        "vocals": {
+            "dsd_vocals": "voicefixer_main/datasets/se/dsd_vocal.lst",
+        }
     }
 
     # VD_TEST = {
@@ -99,6 +110,7 @@ DATA.Update(DATA.VCTK_TRAIN)
 DATA.Update(DATA.VCTK_TEST)
 DATA.Update(DATA.VD_NOISE)
 DATA.Update(DATA.ALL_GSR)
+DATA.Update(DATA.DSD_ALL)
 
 if __name__ == "__main__":
     print(DATA.merge([DATA.get_trainset(set) for set in ["vctk","vocal_wav_44k","vd_noise","dcase"]]))

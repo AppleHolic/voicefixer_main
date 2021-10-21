@@ -170,7 +170,7 @@ if __name__ == "__main__":
                                          replace_sampler_ddp=False,
                                          check_val_every_n_epoch=args.check_val_epoch,
                                          checkpoint_callback=True, logger=logger, log_every_n_steps=10,
-                                         progress_bar_refresh_rate=1, flush_logs_every_n_steps=200)
+                                         progress_bar_refresh_rate=1, flush_logs_every_n_steps=50)
     dm.setup('fit')
     trainer.fit(model, datamodule=dm)
     # trainer.save_checkpoint("example.ckpt")
